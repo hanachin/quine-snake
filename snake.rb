@@ -13,8 +13,8 @@ h_with_index{|c,x|nm[y][x]=$c[(   ">~~L= /       /";i)]||'#';i+=1}};_=ts.select{
 "\x1b[48;5;%dm%s\x1b[0m"%[(;;;"       | |__/|    ";t.p),nm[y][x]]}};m=nm;_.combi
 nation(2){@2.b.include?(@1.b[(;"       L____/    ";0)])&&@1.e;@1.b.include?(@2.b
 .first)&&@2.e};fs.size<5&&fs<<bp.               ();fs.each{m[@1][@2]="\x1b[48;5;
-0m%s\x1b[0m"%m[@1][@2]};$stdout.pri           nt(m.map.with_index{|r,y|"\x1b[#{y
-+1};1H\x1b[K"+r.join}.join);sleep(0.1)}};p=0;gs=TCPServer.open(1234);begin;loop{
+1m%s\x1b[0m"%m[@1][@2]};$stdout.pri           nt(m.map.with_index{|r,y|"\x1b[#{y
++1};1H\x1b[K"+r.join}.join);sleep(0.1)}};p=1;gs=TCPServer.open(1234);begin;loop{
 ts<<T.start(gs.accept){|s|q,d,l,b=(p=p.next),"",true,[bp.()];f=T.current.:define
 _singleton_method;f.(:p){q};f.(:d){d};f.(:e){l=false};f.(:b){b};f.(:n){nb=b.dup;
 h=nb.first;e=nb.pop;nh=dm[d]&.(*h)||h;nb.unshift(nh);fs.delete(nh)&&nb.push(e);b
