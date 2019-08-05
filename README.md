@@ -10,14 +10,14 @@ Requirements
 
 ruby 2.7+, 256 colored terminal, telnet
 
-1. Run Quine Snake server
+1.Run Quine Snake server
 -----------------------------
 
 ```
 $ ruby snake.rb
 ```
 
-2. Play Quine Snake
+2.Play Quine Snake
 -----------------------
 
 Use ←↑→↓ keys to move the snake.
