@@ -8,7 +8,7 @@ last}}});m,ts,fs=nil,[],[];print("\x      1b[2J");dm,bp,rt={"\e[A"=>->y,x{[(y-1)
 >y,x{[y,(x-1)%W]}},->{loop{;;;;;"     ____    ";x=rand(W);y=rand(H);unless(m[y][
 x].start_with?("\x1b"));return("    _/. . L    ";[y,x]);end}},T.start{loop{nm=A.
 new(H){A.new(W){''}};i=0;(;;;;;"    L___  /     ";nm).each_with_index{|r,y|r.eac
-h_with_index{|c,x|nm[y][x]=$c[(   ">~~L= /       /";i)]||'#';i+=1}};_=ts.select{
+h_with_index{|c,x|nm[y][x]=$c[(   %>~~L/ /       ">;i)]||'#';i+=1}};_=ts.select{
 |t|t.respond_to?(:n)}.each{|t|"       | /        ";t.n;t.b.each{|y,x|;;nm[y][x]=
 "\x1b[48;5;%dm%s\x1b[0m"%[(;;;"       | |__/|    ";t.p),nm[y][x]]}};m=nm;_.combi
 nation(2){@2.b.include?(@1.b[(;"       L____/    ";0)])&&@1.e;@1.b.include?(@2.b
