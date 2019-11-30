@@ -1,23 +1,27 @@
 name: Syntax OK
 on: [push]
+
 jobs:
-  ubuntu_rvm:
+  syntax_ok:
+    name: Syntax OK
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: [ 'ruby-head', 'ruby-2.7' ]
+        ruby:
+          - ruby-head
+          - ruby-2.7
+        fail-fast: false
     steps:
       - uses: actions/checkout@master
-      - name: Fixed world writable dirs
-        run: |
-          chmod go-w $HOME
-          sudo chmod -R go-w /usr/share
-          sudo chmod -R go-w /opt
       - name: Set up RVM
-        run: |
-          curl -sSL https://get.rvm.io | bash
+        run: curl -sSL https://get.rvm.io | bash -s -- master
       - name: Set up Ruby
         run: |
           source $HOME/.rvm/scripts/rvm
           rvm install ${{ matrix.ruby }} --binary
           rvm --default use ${{ matrix.ruby }}
+      - name: Test Syntax OK
+        run: |
+          source $HOME/.rvm/scripts/rvm
+          ruby -c snake.rb
+          ruby -e 'def eval(src); RubyVM::AbstractSyntaxTree.parse(src) ;end; load "snake.rb"'
