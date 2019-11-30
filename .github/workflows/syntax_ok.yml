@@ -8,20 +8,17 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - ruby-head
-          - ruby-2.7
+          - docker://rubylang/rubyfarm:latest
+          - docker://rubylang/ruby:2.7-bionic
     steps:
       - uses: actions/checkout@master
-      - name: Set up RVM
-        run: |
-          curl -sSL https://get.rvm.io | bash -s -- --version latest
-      - name: Set up Ruby
-        run: |
-          source $HOME/.rvm/scripts/rvm
-          rvm install ${{ matrix.ruby }} --binary
-          rvm --default use ${{ matrix.ruby }}
       - name: Test Syntax OK
-        run: |
-          source $HOME/.rvm/scripts/rvm
-          ruby -c snake.rb
-          ruby -e 'def eval(src); RubyVM::AbstractSyntaxTree.parse(src) ;end; load "snake.rb"'
+        uses: ${{ matrix.ruby }}
+        with:
+          entrypoint: /opt/ruby/bin/ruby
+          args: -c snake.rb
+      - name: Test Syntax OK (eval)
+        uses: ${{ matrix.ruby }}
+        with:
+          entrypoint: /opt/ruby/bin/ruby
+          args: -e 'def eval(src); RubyVM::AbstractSyntaxTree.parse(src) ;end; load "snake.rb"'
