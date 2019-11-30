@@ -4,12 +4,12 @@ on: [push]
 jobs:
   syntax_ok:
     name: Syntax OK
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         ruby:
-          - docker://rubylang/rubyfarm:latest
-          - docker://rubylang/ruby:2.7-bionic
+          - 'docker://rubylang/rubyfarm:latest'
+          - 'docker://rubylang/ruby:2.7-bionic'
     steps:
       - uses: actions/checkout@master
       - name: Test Syntax OK
