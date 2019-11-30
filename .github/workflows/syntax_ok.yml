@@ -23,5 +23,5 @@ jobs:
       - name: Test Syntax OK
         run: |
           source $HOME/.rvm/scripts/rvm
-          ruby -c snake.rb
           ruby -e 'def eval(src); RubyVM::AbstractSyntaxTree.parse(src) ;end; load "snake.rb"'
+          ruby -c snake.rb
