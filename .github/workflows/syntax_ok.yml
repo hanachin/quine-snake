@@ -1,24 +1,23 @@
 name: Syntax OK
 on: [push]
-
 jobs:
-  syntax_ok:
-    name: Syntax OK
+  ubuntu_rvm:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby:
-          - 'docker://rubylang/rubyfarm:latest'
-          - 'docker://rubylang/ruby:2.7-bionic'
+        ruby: [ 'ruby-head', 'ruby-2.7' ]
     steps:
       - uses: actions/checkout@master
-      - name: Test Syntax OK
-        uses: ${{ matrix.ruby }}
-        with:
-          entrypoint: /opt/ruby/bin/ruby
-          args: -c snake.rb
-      - name: Test Syntax OK (eval)
-        uses: ${{ matrix.ruby }}
-        with:
-          entrypoint: /opt/ruby/bin/ruby
-          args: -e 'def eval(src); RubyVM::AbstractSyntaxTree.parse(src) ;end; load "snake.rb"'
+      - name: Fixed world writable dirs
+        run: |
+          chmod go-w $HOME
+          sudo chmod -R go-w /usr/share
+          sudo chmod -R go-w /opt
+      - name: Set up RVM
+        run: |
+          curl -sSL https://get.rvm.io | bash
+      - name: Set up Ruby
+        run: |
+          source $HOME/.rvm/scripts/rvm
+          rvm install ${{ matrix.ruby }} --binary
+          rvm --default use ${{ matrix.ruby }}
