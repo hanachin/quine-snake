@@ -1,0 +1,32 @@
+name: Syntax OK
+
+on:
+  - push
+
+jobs:
+  syntax_ok:
+    name: Syntax OK
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - ruby-head
+          - ruby-2.7
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up RVM
+        run: curl -sSL https://get.rvm.io | bash -s -- master
+      - name: Set up Ruby
+        run: |
+          source $HOME/.rvm/scripts/rvm
+          rvm install ${{ matrix.ruby }}
+          rvm --default use ${{ matrix.ruby }}
+      - name: Test Syntax OK
+        run: |
+          source $HOME/.rvm/scripts/rvm
+          ruby -c snake.rb
+      - name: Test Syntax OK (eval)
+        run: |
+          source $HOME/.rvm/scripts/rvm
+          ruby -e 'def eval(src); RubyVM::AbstractSyntaxTree.parse(src) ;end; load "snake.rb"'
