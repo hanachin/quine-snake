@@ -10,7 +10,7 @@ jobs:
         ruby:
           - ruby-head
           - ruby-2.7
-        fail-fast: false
+      fail-fast: false
     steps:
       - uses: actions/checkout@master
       - name: Set up RVM
